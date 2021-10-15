@@ -11,6 +11,22 @@
       :playing="playing"
     />
   </figure>
+  <h1>Actions working</h1>
+  <h1>{{count}}</h1>
+  <h2>{{mouseText}}</h2>
+  <figure
+    id="logo"
+    @mouseenter="toggle"
+    @mouseleave="toggle"
+    @click="change"
+  >
+    <random-icon
+      ref="logo"
+      :playing="playing"
+      @click="onClick"
+      @mouseenter="mouseOver"
+    />
+  </figure>
   <h1><a href="https://github.com/Justineo/vue-awesome">Vue-Awesome</a></h1>
   <p class="desc">
     Awesome SVG icon component for Vue.js, with built-in Font Awesome icons.
@@ -22,7 +38,6 @@
     ·
     <a href="https://fontawesome.com/icons?m=free">search</a>
   </p>
-
   <h2>Basic</h2>
   <p><v-icon name="flag"/></p>
   <figure>
@@ -97,6 +112,7 @@
     <pre><code>&lt;v-icon <span class="attr">name</span>=<span class="val">"brands/vuejs"</span> <span class="attr">title</span>=<span class="val">"Vue.js"</span>&gt;&lt;/v-icon&gt;</code></pre>
   </figure>
 
+  <!-- TODO Stacked Icons are not working in Vue 3.X -->
   <h2>Stacked icons</h2>
   <p>
     <small>Use stacked icons like in FontAwesome. Even more powerful.</small>
@@ -117,6 +133,7 @@
   &lt;v-icon <span class="attr">name</span>=<span class="val">"ban"</span> <span class="attr">scale</span>=<span class="val">"2"</span> <span class="attr">class</span>=<span class="val">"alert"</span>&gt;&lt;/v-icon&gt;
 &lt;/v-icon&gt;</code></pre>
   </figure>
+
 
   <h2>Custom icons</h2>
   <p><small>You can register your own icons.</small></p>
@@ -166,7 +183,9 @@ export default {
   },
   data () {
     return {
-      playing: true
+      playing: true,
+      count: 0,
+      mouseToggle: false
     }
   },
   methods: {
@@ -175,6 +194,18 @@ export default {
     },
     change () {
       this.$refs.logo.change()
+    },
+    onClick () {
+      this.count = this.count + 1
+    },
+    mouseOver() {
+      console.log("hleflksadjf")
+      this.mouseToggle = !this.mouseToggle
+    }
+  },
+  computed: {
+    mouseText () {
+      return this.mouseToggle ? "moused" : "nope"
     }
   }
 }

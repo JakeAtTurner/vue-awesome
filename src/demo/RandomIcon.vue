@@ -24,10 +24,12 @@ export default {
   },
   data () {
     return {
-      name: randomIcon()
+      name: 'regular/clock'//randomIcon()
     }
   },
   mounted () {
+    console.log(this.name)
+    // this is the interval that changes everything
     setInterval(() => {
       if (this.playing) {
         this.change()

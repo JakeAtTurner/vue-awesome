@@ -22,8 +22,10 @@
     "@vue/cli-plugin-babel": "^4.4.6",
     "@vue/cli-plugin-eslint": "^4.4.6",
     "@vue/cli-service": "^4.5.13",
+    "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-prettier": "^5.0.0",
     "babel-eslint": "^10.1.0",
+    "core-js": "^3.6.5",
     "cross-env": "^5.2.1",
     "eslint": "^7.5.0",
     "eslint-config-standard": "^14.1.1",
@@ -32,7 +34,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-vue": "^6.2.2",
+    "eslint-plugin-vue": "^7.0.0",
     "esm": "^3.2.25",
     "fa2svg": "^1.2.0",
     "minimist": "^1.2.5",
@@ -46,11 +48,12 @@
     "semver": "^5.7.1",
     "stringify-object": "^3.3.0",
     "svgfont2glyphs": "^0.1.4",
-    "vue": "^2.6.11",
+    "vue": "^3.0.0",
     "vue-template-compiler": "^2.6.11"
   },
   "peerDependencies": {
-    "vue": "^2.4.0"
+    "core-js": "^3.6.5",
+    "vue": "^3.0.0"
   },
   "browserslist": [
     "> 1%",

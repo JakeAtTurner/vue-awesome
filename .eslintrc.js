@@ -4,6 +4,9 @@ module.exports = {
     parser: 'babel-eslint',
     sourceType: 'module'
   },
+  ignorePatterns: [
+    "**/demo/*"
+  ],
   extends: [
     // https://github.com/vuejs/eslint-plugin-vue#bulb-rules
     'plugin:vue/essential',
