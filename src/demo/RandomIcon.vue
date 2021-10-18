@@ -1,8 +1,8 @@
 <template>
-<v-icon
-  :name="name"
-  scale="4"
-/>
+  <v-icon
+    :name="name"
+    scale="4"
+  />
 </template>
 
 <script>
@@ -24,11 +24,10 @@ export default {
   },
   data () {
     return {
-      name: 'regular/clock'//randomIcon()
+      name: randomIcon()
     }
   },
   mounted () {
-    console.log(this.name)
     // this is the interval that changes everything
     setInterval(() => {
       if (this.playing) {
@@ -39,9 +38,6 @@ export default {
   methods: {
     change () {
       this.name = randomIcon()
-    },
-    toggle: function () {
-      this.playing = !this.playing
     }
   }
 }

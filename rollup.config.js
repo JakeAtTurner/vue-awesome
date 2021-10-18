@@ -1,4 +1,5 @@
 import vue from 'rollup-plugin-vue'
+import PostCSS from 'rollup-plugin-postcss'
 import buble from '@rollup/plugin-buble'
 import { terser } from 'rollup-plugin-terser'
 import commonjs from '@rollup/plugin-commonjs'
@@ -16,9 +17,11 @@ export default [
       resolve(),
       commonjs(),
       vue({
-        compileTemplate: true,
-        css: true
+        cssModulesOptions: {
+          generateScopedName: '[local]___[hash:base64:5]',
+        }
       }),
+      PostCSS(),
       buble(),
       terser()
     ]
@@ -38,9 +41,11 @@ export default [
       resolve(),
       commonjs(),
       vue({
-        compileTemplate: true,
-        css: true
+        cssModulesOptions: {
+          generateScopedName: '[local]___[hash:base64:5]',
+        }
       }),
+      PostCSS(),
       buble(),
       terser()
     ]

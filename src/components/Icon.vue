@@ -177,7 +177,7 @@ export default {
   },
   methods: {
     updateStack () {
-      const children = this.$slots && this.$slots.default ? this.$slots.default().filter(child => child.type.name.includes('fa-icon')) : []
+      const children = this.$slots && this.$slots.default ? this.$slots.default.filter(child => child.type.name.includes('fa-icon')) : []
       if (!this.name && this.name !== null && children.length === 0) {
         warn(`Invalid prop: prop "name" is required.`, this)
         return
@@ -221,7 +221,6 @@ export default {
       viewBox: this.box,
       focusable: this.focusable
     }
-    // console.log(this.$listeners)
 
     if (this.raw) {
       let html = `<g>${this.raw}</g>`
@@ -232,35 +231,31 @@ export default {
 
       options.domProps = { innerHTML: html }
     }
-
+    let iconsAndPolygons = []
+    if (this.icon) {
+      let iconPathElements = this.icon.paths.map((path, i) => {
+        let n = { key: `path-${i}` }
+        for (let k in path) {
+          n[k] = path[k]
+        }
+        return h('path', n)
+      })
+      let polygonElements = this.icon.polygons.map((polygon, i) => {
+        let n = { key: `polygon-${i}` }
+        for (let k in polygon) {
+          n[k] = polygon[k]
+        }
+        return h('polygon', n)
+      })
+      iconsAndPolygons = [...iconPathElements, ...polygonElements]
+    }
     let content = this.title ? [h('title', this.title)] : []
     return h(
       'svg',
       options,
       this.raw
         ? null
-        : content.concat([
-          h(
-            'g',
-            this.$slots.default ||
-                (this.icon
-                  ? [
-                    ...this.icon.paths.map((path, i) =>
-                      h('path', {
-                        ...path,
-                        key: `path-${i}`
-                      })
-                    ),
-                    ...this.icon.polygons.map((polygon, i) =>
-                      h('polygon', {
-                        ...polygon,
-                        key: `polygon-${i}`
-                      })
-                    )
-                  ]
-                  : [])
-          )
-        ])
+        : content.concat([h('g', this.$slots.default || iconsAndPolygons)])
     )
   },
   register (data) {

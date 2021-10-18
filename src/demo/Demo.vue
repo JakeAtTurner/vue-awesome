@@ -2,6 +2,7 @@
 <main>
   <figure
     id="logo"
+    class="logo"
     @mouseenter="toggle"
     @mouseleave="toggle"
     @click="change"
@@ -15,19 +16,20 @@
   <h1>{{count}}</h1>
   <h2>{{mouseText}}</h2>
   <figure
-    id="logo"
-    @mouseenter="toggle"
-    @mouseleave="toggle"
-    @click="change"
+    id="logo2"
+    class="logo"
   >
     <random-icon
-      ref="logo"
+      ref="logo2"
       :playing="playing"
       @click="onClick"
       @mouseenter="mouseOver"
     />
   </figure>
-  <h1><a href="https://github.com/Justineo/vue-awesome">Vue-Awesome</a></h1>
+  <h1>Test actions on a icon</h1>
+  <clicker @click="onClick" id="theMan"/>
+  <div @click="onClick" class="bluebox"/>
+  <!-- <h1><a href="https://github.com/Justineo/vue-awesome">Vue-Awesome</a></h1>
   <p class="desc">
     Awesome SVG icon component for Vue.js, with built-in Font Awesome icons.
   </p>
@@ -112,7 +114,7 @@
     <pre><code>&lt;v-icon <span class="attr">name</span>=<span class="val">"brands/vuejs"</span> <span class="attr">title</span>=<span class="val">"Vue.js"</span>&gt;&lt;/v-icon&gt;</code></pre>
   </figure>
 
-  <!-- TODO Stacked Icons are not working in Vue 3.X -->
+  TODO Stacked Icons are not working in Vue 3.X
   <h2>Stacked icons</h2>
   <p>
     <small>Use stacked icons like in FontAwesome. Even more powerful.</small>
@@ -166,20 +168,22 @@
     >MIT License</a>
     ·
     <a href="//github.com/Justineo/vue-awesome">View on GitHub</a>
-  </footer>
+  </footer> -->
 </main>
 </template>
 
 <script>
 import VIcon from '../components/Icon.vue'
 import RandomIcon from './RandomIcon'
+import Clicker from './clicker.vue'
 import '../icons'
 
 export default {
   name: 'demo',
   components: {
     VIcon,
-    RandomIcon
+    RandomIcon,
+    Clicker
   },
   data () {
     return {
@@ -197,6 +201,7 @@ export default {
     },
     onClick () {
       this.count = this.count + 1
+      console.log(this.count, "count")
     },
     mouseOver() {
       console.log("hleflksadjf")
@@ -491,7 +496,7 @@ p a {
   font-weight: 600;
 }
 
-#logo {
+.logo {
   display: block;
   width: 120px;
   height: 120px;
@@ -506,14 +511,14 @@ p a {
   transition: all 0.3s;
 }
 
-#logo:hover {
+.logo:hover {
   margin: 10px auto 30px;
   padding: 30px;
   background-color: #41b883;
   color: #35495e;
 }
 
-#logo .fa-icon {
+.logo .fa-icon {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -612,12 +617,12 @@ footer a:hover {
     text-align: left;
   }
 
-  #logo {
+  .logo {
     margin: 0 auto;
     transform: scale(0.6);
   }
 
-  #logo:hover {
+  .logo:hover {
     margin: -10px auto;
   }
 
@@ -645,5 +650,10 @@ footer a:hover {
     overflow-x: auto;
     font-size: 0.9em;
   }
+}
+.bluebox {
+  width: 50px;
+  height: 50px;
+  background-color: #2973b7;
 }
 </style>
